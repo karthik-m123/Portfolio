@@ -125,11 +125,11 @@ export default function CloudOrbitDemo() {
       images={[
         {
           name: "Avatar",
-          url: "/avatar-1.webp",
+          url: "https://cdn.badtz-ui.com/images/components/cloud-orbit/avatar-1.webp",
         },
         {
           name: "Deepseek Logo",
-          url: "/avatar-1.webp",
+          url: "https://cdn.badtz-ui.com/images/components/cloud-orbit/avatar-1.webp",
         },
       ]}
     >
@@ -147,3 +147,4 @@ export default function CloudOrbitDemo() {
     </CloudOrbit>
   )
 }
+
