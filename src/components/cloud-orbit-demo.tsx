@@ -2,6 +2,7 @@ import {
   CloudOrbit,
   OrbitingImage,
 } from "@/components/ui/cloud-orbit"
+import avatar from "@/assets/avatar-1.webp"
 
 const orbitingImagesData = [
   {
@@ -126,11 +127,11 @@ export default function CloudOrbitDemo() {
       images={[
         {
           name: "Avatar",
-          url: "src/assets/avatar-1.webp",
+          url: avatar,
         },
         {
           name: "Deepseek Logo",
-          url: "src/assets/avatar-1.webp",
+          url: avatar,
         },
       ]}
     >
