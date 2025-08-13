@@ -1,8 +1,7 @@
-import {
-  CloudOrbit,
-  OrbitingImage,
-} from "@/components/ui/cloud-orbit"
-import avatar from "@/assets/avatar-1.png"
+import { CloudOrbit, OrbitingImage } from "@/components/ui/cloud-orbit";
+import avatar from "@/assets/avatar-1.png";
+import { useMediaQuery } from 'react-responsive';
+
 const orbitingImagesData = [
   {
     speed: 20,
@@ -119,17 +118,25 @@ const orbitingImagesData = [
 ]
 
 export default function CloudOrbitDemo() {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+  const mobileStyles = {
+    size: 104, // ~65% of 160
+    orbitingImageSize: 35, // ~50% of 70 (average)
+    orbitingImageRadius: (_orbit: { radius: number }) => 80, // Adjusted radius for mobile
+  };
+
   return (
     <CloudOrbit
       duration={3}
-      size={160}
+      size={isMobile ? mobileStyles.size : 160}
       images={[
         {
-          name: "Avatar",
+          name: 'Avatar',
           url: avatar,
         },
         {
-          name: "Deepseek Logo",
+          name: 'Deepseek Logo',
           url: avatar,
         },
       ]}
@@ -138,13 +145,13 @@ export default function CloudOrbitDemo() {
         <OrbitingImage
           key={index}
           speed={orbit.speed}
-          radius={orbit.radius}
-          size={orbit.size}
+          radius={isMobile ? mobileStyles.orbitingImageRadius(orbit) : orbit.radius}
+          size={isMobile ? mobileStyles.orbitingImageSize : orbit.size}
           startAt={orbit.startAt}
           images={orbit.images}
           duration={3}
         />
       ))}
     </CloudOrbit>
-  )
+  );
 }
