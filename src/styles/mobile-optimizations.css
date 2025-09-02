@@ -1,0 +1,159 @@
+/* Mobile-First Performance & Visual Optimizations */
+
+/* Viewport Optimizations */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+  maximum-scale: 5;
+}
+
+/* Reduce animations on low-end devices */
+@media (max-device-memory: 4) {
+  * {
+    animation-duration: 0.5s !important;
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* Battery optimization */
+@media (max-device-memory: 2) {
+  .hero-spotlight canvas {
+    display: none;
+  }
+  
+  .hero-spotlight {
+    background: linear-gradient(135deg, #0f172a, #1e293b) !important;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (pointer: coarse) {
+  /* Increase touch targets */
+  .btn-primary,
+  .btn-secondary,
+  .glowing-btn,
+  .glowing-btn-download {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Improve tap highlight */
+  * {
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+  }
+  
+  /* Disable hover states on touch devices */
+  .card:hover,
+  .glowing-btn:hover,
+  .glowing-btn-download:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --accent-primary: #4f46e5;
+    --accent-secondary: #7c3aed;
+    --text-primary: #ffffff;
+    --bg-primary: #000000;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .hero-spotlight canvas {
+    animation: none !important;
+  }
+}
+
+/* Connection-aware loading */
+@media (prefers-reduced-data: reduce) {
+  .hero-spotlight canvas {
+    display: none;
+  }
+  
+  .card::before,
+  .glowing-btn::before,
+  .glowing-btn-download::before {
+    display: none;
+  }
+}
+
+/* Dark mode safe styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-spotlight {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .hero-section h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 350px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .hero-section h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .hero-section p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .hero-spotlight {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Focus management for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  *:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    transition: outline 0.2s ease;
+  }
+}
+
+/* Print optimization */
+@media print {
+  .hero-spotlight canvas,
+  .card::before,
+  .glowing-btn::before,
+  .glowing-btn-download::before {
+    display: none !important;
+  }
+  
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
